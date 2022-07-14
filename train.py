@@ -50,7 +50,7 @@ def train(name,X_train,X_test,y_train,y_test):
 
 
 def train_all(X_train,X_test,y_train,y_test):
-    results = []
+    results = dict()
     names = []
     scoring = ['accuracy', 'precision_weighted', 'recall_weighted', 'f1_weighted', 'roc_auc']
     target_names = ['Healthy', 'Non-Healthy']
@@ -61,7 +61,7 @@ def train_all(X_train,X_test,y_train,y_test):
         clf = model.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
         print(name)
-        results.append({name:classification_report(y_test, y_pred, target_names=target_names)})
+        results[name] = classification_report(y_test, y_pred, target_names=target_names)
         names.append(name)
         this_df = pd.DataFrame(cv_results)
         this_df['model'] = name

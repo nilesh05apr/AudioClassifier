@@ -42,5 +42,4 @@ def plot_fit_performance(results_long_fit):
 
 def performance(results,bootstrap_df):
     metrics = list(set(results.metrics.values))
-    bootstrap_df.groupby(['model'])[metrics].agg([np.std, np.mean])
-    return bootstrap_df
+    return bootstrap_df.groupby(['model'])[metrics].agg([np.std, np.mean])
